@@ -14,11 +14,11 @@ load_dotenv()
 
 ENV = os.getenv("ENVIRONMENT")
 if ENV == "prod":
-    DB_USER = os.getenv("POSTGRES_USER")
-    DB_PASSWORD = os.getenv("POSTGRES_PASSWORD")
-    DB_NAME = os.getenv("POSTGRES_DB")
-    DB_HOST = "localhost"
-    DB_PORT = 5555
+    DB_USER = required_env("POSTGRES_USER")
+    DB_PASSWORD = required_env("POSTGRES_PASSWORD")
+    DB_NAME = required_env("POSTGRES_DB")
+    DB_HOST = os.getenv("POSTGRES_HOST", default="localhost")
+    DB_PORT = os.getenv("POSTGRES_PORT", default = 5555)
 
     DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     # Create the SQLAlchemy engine

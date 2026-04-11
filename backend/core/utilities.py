@@ -10,3 +10,9 @@ def find_project_root():
     )
     logger.debug(project_root)
     return project_root
+
+def required_env(variable_name):
+    value = os.getenv(variable_name)
+    if value is None:
+        raise ValueError(f"{variable_name} is required")
+    return value
