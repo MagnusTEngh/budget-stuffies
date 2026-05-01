@@ -1,5 +1,5 @@
 import logging
-
+import requests
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -16,3 +16,22 @@ def required_env(variable_name):
     if value is None:
         raise ValueError(f"{variable_name} is required")
     return value
+
+
+def external_request(method, url, **kwargs):
+    """
+    Generic HTTP request wrapper.
+
+    :param method: HTTP method as string ("GET", "POST", etc.)
+    :param url: Request URL
+    :param kwargs: Passed directly to requests.request()
+    :return: response object if status_code == 200
+    :raises: requests.HTTPError or ValueError
+    """
+    try:
+        response = requests.request(method=method, url=url, **kwargs)
+
+        response.raise_for_status()
+        return response
+    except Exception as e:
+        logger.error(e, exc_info=True)

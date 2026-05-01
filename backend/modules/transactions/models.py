@@ -9,6 +9,6 @@ class TransactionORM(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     transaction_type: Mapped[str] = mapped_column(String)
     account_name: Mapped[str] = mapped_column(String)
-    date: Mapped[str] = mapped_column(String)  # or Date
+    date: Mapped[date] = mapped_column(Date)  # or Date
     category: Mapped[str] = mapped_column(String, default="Undefined")
     amount: Mapped[int] = mapped_column(Integer)

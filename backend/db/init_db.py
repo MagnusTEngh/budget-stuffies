@@ -1,4 +1,4 @@
-"""To run this, run the command 'uv run python -m db.init_db'"""
+"""To run this, run the command 'uv run python -m backend.db.init_db' from project root"""
 
 import logging
 import os
